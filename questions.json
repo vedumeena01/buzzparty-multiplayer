@@ -1,0 +1,97 @@
+[
+  {
+    "category": "Tech & AI",
+    "mode": "quiz",
+    "question": "What does the 'GPT' in ChatGPT actually stand for?",
+    "options": [
+      "Generative Pre-trained Transformer",
+      "General Purpose Technology",
+      "Global Predictive Text",
+      "Graph Processed Tokenizer"
+    ],
+    "correctIndex": 0,
+    "timeLimit": 15,
+    "explanation": "GPT stands for Generative Pre-trained Transformer, introduced by OpenAI in 2018."
+  },
+  {
+    "category": "Science & Cosmos",
+    "mode": "quiz",
+    "question": "Which planet in our solar system rotates clockwise (retrograde)?",
+    "options": ["Mars", "Venus", "Jupiter", "Neptune"],
+    "correctIndex": 1,
+    "timeLimit": 15,
+    "explanation": "Venus rotates east-to-west (clockwise), opposite to most other planets!"
+  },
+  {
+    "category": "Gaming",
+    "mode": "quiz",
+    "question": "In Minecraft, which mob was accidentally created while trying to make a pig?",
+    "options": ["Zombie", "Enderman", "Creeper", "Skeleton"],
+    "correctIndex": 2,
+    "timeLimit": 15,
+    "explanation": "Notch accidentally swapped length and height when coding a pig, creating the iconic Creeper!"
+  },
+  {
+    "category": "Pop Culture",
+    "mode": "quiz",
+    "question": "Which Marvel character has visited the most planets across the MCU?",
+    "options": ["Thor", "Star-Lord", "Captain Marvel", "Thanos"],
+    "correctIndex": 0,
+    "timeLimit": 15,
+    "explanation": "Over his 1,500 years of life, Thor has journeyed through the Nine Realms and beyond."
+  },
+  {
+    "category": "Brain Teaser",
+    "mode": "quiz",
+    "question": "If you are in a race and you overtake the person in second place, what place are you in?",
+    "options": ["1st Place", "2nd Place", "3rd Place", "Tied for 1st"],
+    "correctIndex": 1,
+    "timeLimit": 12,
+    "explanation": "You took second place's spot, so you are now in 2nd place!"
+  },
+  {
+    "category": "Lightning Buzzer",
+    "mode": "buzzer",
+    "question": "BUZZER ROUND: Which animal can sleep for up to 3 years?",
+    "options": ["Snail", "Sloth", "Koala", "Bullfrog"],
+    "correctIndex": 0,
+    "timeLimit": 15,
+    "explanation": "Snails need moisture to survive; if the weather is extreme, they can hibernate for up to 3 years."
+  },
+  {
+    "category": "Tech & AI",
+    "mode": "quiz",
+    "question": "What was the original code name for the Android operating system?",
+    "options": ["Cupcake", "Andy", "Sooner", "Titan"],
+    "correctIndex": 0,
+    "timeLimit": 15,
+    "explanation": "Android 1.5 was codenamed 'Cupcake', starting the famous sweet treats naming tradition."
+  },
+  {
+    "category": "Lightning Buzzer",
+    "mode": "buzzer",
+    "question": "BUZZER ROUND: What is the highest-grossing arcade video game of all time?",
+    "options": ["Pac-Man", "Space Invaders", "Street Fighter II", "Donkey Kong"],
+    "correctIndex": 0,
+    "timeLimit": 15,
+    "explanation": "Pac-Man has generated an estimated $14+ billion since its debut in 1980!"
+  },
+  {
+    "category": "Science & Cosmos",
+    "mode": "quiz",
+    "question": "How long does light from the Sun take to reach Earth?",
+    "options": ["8 seconds", "8 minutes 20 seconds", "1 hour", "Instantaneous"],
+    "correctIndex": 1,
+    "timeLimit": 15,
+    "explanation": "At light speed (300,000 km/s), solar photons take approximately 8 minutes and 20 seconds to travel 93 million miles."
+  },
+  {
+    "category": "Pop Culture",
+    "mode": "quiz",
+    "question": "What was Spotify's first globally streamed song to reach 1 billion plays?",
+    "options": ["Shape of You", "One Dance", "Closer", "Blinding Lights"],
+    "correctIndex": 1,
+    "timeLimit": 15,
+    "explanation": "Drake's 'One Dance' (feat. Wizkid & Kyla) became the first track to hit 1 billion streams in 2016."
+  }
+]

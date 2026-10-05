@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BuzzParty Controller</title>
+  <link rel="stylesheet" href="player.css">
+</head>
+<body>
+  <div class="player-app">
+    <!-- Header -->
+    <header class="player-header">
+      <div class="player-brand">
+        <span>⚡</span>
+        <span>BuzzParty</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button id="btn-player-rules" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.85rem; font-weight: 700; padding: 5px 10px; border-radius: 8px; cursor: pointer;">📖 Rules</button>
+        <div class="player-stats-mini" id="player-stats-mini" style="display: none;">
+          <span id="header-avatar">⚡</span>
+          <span id="header-name">Player</span>
+          <span class="player-badge-score" id="header-score">0 pts</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- PLAYER RULES MODAL -->
+    <div id="player-rules-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 3000; align-items: center; justify-content: center; padding: 16px;">
+      <div style="background: #171438; border: 1px solid rgba(147, 130, 255, 0.3); border-radius: 20px; max-width: 440px; width: 100%; padding: 24px; max-height: 85vh; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; color: #fff;">🎮 How To Play</h3>
+          <button id="btn-close-player-rules" style="background: rgba(255,255,255,0.1); border: none; color: #fff; font-size: 1.5rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer;">&times;</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;">
+            <strong style="color: #38bdf8;">1. Multiple Choice Round</strong>
+            <p style="color: #cbd5e1; margin-top: 4px;">Tap your answer button (▲, ◆, ●, ■). Faster answers score more speed bonus points!</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;">
+            <strong style="color: #f87171;">2. Lightning Buzzer Round</strong>
+            <p style="color: #cbd5e1; margin-top: 4px;">Smash the big red buzzer button before anyone else to lock in answering rights (+1,000 pts / -200 pts penalty).</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;">
+            <strong style="color: #fbbf24;">3. Fire Streaks</strong>
+            <p style="color: #cbd5e1; margin-top: 4px;">Get 2+ answers right in a row to earn multiplier bonuses (🔥).</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;">
+            <strong style="color: #a855f7;">4. Emoji Reactions</strong>
+            <p style="color: #cbd5e1; margin-top: 4px;">Tap emojis on the bottom dock anytime to float reactions on the TV screen!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. JOIN VIEW -->
+    <section id="view-join" class="player-view active">
+      <div class="join-card">
+        <h2 class="join-title">Join The Game</h2>
+        <p class="join-subtitle">Enter the 4-letter room code on the host screen:</p>
+
+        <div class="error-banner" id="join-error-banner"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="input-room-code">Room Code</label>
+          <input type="text" id="input-room-code" class="form-input room-input" placeholder="ABCD" maxlength="4" autocomplete="off" autocorrect="off" autocapitalize="characters">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="input-player-name">Your Nickname</label>
+          <input type="text" id="input-player-name" class="form-input" placeholder="e.g. Maverick" maxlength="15" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Pick Avatar</label>
+          <div class="avatar-selector" id="avatar-selector">
+            <button class="avatar-btn selected" data-avatar="⚡">⚡</button>
+            <button class="avatar-btn" data-avatar="🚀">🚀</button>
+            <button class="avatar-btn" data-avatar="🦊">🦊</button>
+            <button class="avatar-btn" data-avatar="👾">👾</button>
+            <button class="avatar-btn" data-avatar="👑">👑</button>
+            <button class="avatar-btn" data-avatar="🍕">🍕</button>
+          </div>
+        </div>
+
+        <button id="btn-join" class="btn-join-room">Join Party 🚀</button>
+      </div>
+    </section>
+
+    <!-- 2. LOBBY WAITING VIEW -->
+    <section id="view-lobby" class="player-view">
+      <div class="lobby-wait-card">
+        <div class="lobby-wait-avatar" id="lobby-wait-avatar">⚡</div>
+        <h2 class="lobby-wait-title">You're in the game!</h2>
+        <p class="lobby-wait-sub">Look up at the big screen.<br>Waiting for the host to start...</p>
+        <div style="font-size: 0.95rem; color: #a5b4fc; background: rgba(165, 180, 252, 0.1); padding: 8px 16px; border-radius: 12px;">
+          Room: <strong id="lobby-code-display">----</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INTRO COUNTDOWN VIEW -->
+    <section id="view-intro" class="player-view">
+      <div class="intro-countdown-card">
+        <div class="intro-round-badge" id="intro-round-badge">Get Ready!</div>
+        <div class="intro-big-timer" id="intro-player-timer">3</div>
+        <p style="color: var(--text-muted); font-size: 1.1rem;">Watch the screen for the question!</p>
+      </div>
+    </section>
+
+    <!-- 4. ACTIVE QUESTION VIEW -->
+    <section id="view-question" class="player-view">
+      <!-- Standard Quiz 4-pad mode -->
+      <div class="question-mode-quiz" id="quiz-pad-container">
+        <div class="pad-grid">
+          <button class="pad-btn pad-0" id="pad-btn-0" data-index="0">
+            <span class="pad-shape">▲</span>
+            <span class="pad-label" id="pad-label-0">A</span>
+          </button>
+          <button class="pad-btn pad-1" id="pad-btn-1" data-index="1">
+            <span class="pad-shape">◆</span>
+            <span class="pad-label" id="pad-label-1">B</span>
+          </button>
+          <button class="pad-btn pad-2" id="pad-btn-2" data-index="2">
+            <span class="pad-shape">●</span>
+            <span class="pad-label" id="pad-label-2">C</span>
+          </button>
+          <button class="pad-btn pad-3" id="pad-btn-3" data-index="3">
+            <span class="pad-shape">■</span>
+            <span class="pad-label" id="pad-label-3">D</span>
+          </button>
+        </div>
+        <div class="question-status-msg" id="question-status-msg">Tap your answer!</div>
+      </div>
+
+      <!-- Lightning Buzzer Mode -->
+      <div class="buzzer-mode-container" id="buzzer-mode-container">
+        <button class="giant-buzzer-btn" id="btn-buzzer-slam">
+          <span>🚨</span>
+          <span>BUZZ IN!</span>
+        </button>
+        <div class="question-status-msg" id="buzzer-status-msg">Be the fastest to smash the buzzer!</div>
+      </div>
+    </section>
+
+    <!-- 5. REVEAL RESULT VIEW -->
+    <section id="view-reveal" class="player-view">
+      <div class="result-card">
+        <div class="result-icon" id="result-icon">🎯</div>
+        <h2 class="result-title" id="result-title">Correct!</h2>
+        <div class="result-points" id="result-points">+650 pts</div>
+        <div class="result-streak" id="result-streak" style="display: none;">🔥 2x Streak!</div>
+      </div>
+    </section>
+
+    <!-- 6. LEADERBOARD VIEW -->
+    <section id="view-leaderboard" class="player-view">
+      <div class="player-lb-card">
+        <p style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Your Current Standing</p>
+        <div class="player-lb-rank" id="player-my-rank">#1</div>
+        <div class="player-lb-score" id="player-my-score">1,250 pts</div>
+        <p style="color: #cbd5e1; font-size: 0.95rem;">Look up at the screen for full standings!</p>
+      </div>
+    </section>
+
+    <!-- 7. PODIUM VIEW -->
+    <section id="view-podium" class="player-view">
+      <div class="result-card">
+        <div class="result-icon">🏆</div>
+        <h2 class="result-title">Game Complete!</h2>
+        <div class="player-lb-rank" id="podium-final-rank">#1</div>
+        <div class="player-lb-score" id="podium-final-score">2,500 pts</div>
+        <p style="color: #cbd5e1; margin-top: 10px;">Great game! The host can start a rematch.</p>
+      </div>
+    </section>
+
+    <!-- Floating Reaction Dock (Active once joined) -->
+    <div class="reaction-dock" id="reaction-dock" style="display: none;">
+      <button class="btn-reaction" data-reaction="🔥">🔥</button>
+      <button class="btn-reaction" data-reaction="🤯">🤯</button>
+      <button class="btn-reaction" data-reaction="😂">😂</button>
+      <button class="btn-reaction" data-reaction="💩">💩</button>
+      <button class="btn-reaction" data-reaction="🎯">🎯</button>
+      <button class="btn-reaction" data-reaction="🚀">🚀</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="audio.js"></script>
+  <script src="player.js"></script>
+</body>
+</html>
